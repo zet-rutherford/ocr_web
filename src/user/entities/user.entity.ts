@@ -1,4 +1,4 @@
-import { Post } from 'src/post/entities/post.entity';
+import { Image } from 'src/image/entities/image.entity';
 import {
   Entity,
   Column,
@@ -13,10 +13,7 @@ export class User {
   id: number;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
+  name: string;
 
   @Column()
   email: string;
@@ -27,12 +24,6 @@ export class User {
   @Column({ default: null, nullable: true })
   refreshToken: string;
 
-  @Column({ default: null, nullable: true })
-  avatar: string;
-
-  @Column({ default: 1 })
-  status: number;
-
   @Column({ default: 'user' })
   role: string;
 
@@ -41,6 +32,6 @@ export class User {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => Post, (post) => post.user)
-  posts: Post[];
+  @OneToMany(() => Image, (image) => image.user)
+  images: Image[];
 }

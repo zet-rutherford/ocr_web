@@ -6,12 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from 'database/data-source';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import { PostModule } from './post/post.module';
-import { CategoryModule } from './category/category.module';
 import { APP_GUARD } from '@nestjs/core';
 import { RoleGuard } from './auth/role.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { User } from './user/entities/user.entity';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -20,8 +19,7 @@ import { User } from './user/entities/user.entity';
     UserModule,
     AuthModule,
     ConfigModule.forRoot(),
-    PostModule,
-    CategoryModule,
+    ImageModule,
   ],
   controllers: [AppController],
   providers: [

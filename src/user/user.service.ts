@@ -19,22 +19,13 @@ export class UserService {
     const keyword = query.search || '';
     const [res, total] = await this.userRepository.findAndCount({
       where: [
-        { firstName: Like('%' + keyword + '%') },
-        { lastName: Like('%' + keyword + '%') },
+        { name: Like('%' + keyword + '%') },
         { email: Like('%' + keyword + '%') },
       ],
       order: { createdAt: 'DESC' },
       take: itemsPerPage,
       skip: skip,
-      select: [
-        'id',
-        'firstName',
-        'lastName',
-        'email',
-        'status',
-        'createdAt',
-        'updatedAt',
-      ],
+      select: ['id', 'name', 'email', 'createdAt', 'updatedAt'],
     });
     const lastPage = Math.ceil(total / itemsPerPage);
     const nextPage = page + 1 > lastPage ? null : page + 1;
@@ -69,9 +60,5 @@ export class UserService {
 
   async delete(id: number): Promise<DeleteResult> {
     return await this.userRepository.delete(id);
-  }
-
-  async updateAvatar(id: number, avatar: string): Promise<UpdateResult> {
-    return await this.userRepository.update(id, { avatar });
   }
 }

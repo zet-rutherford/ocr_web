@@ -6,7 +6,7 @@ export const dataSourceOptions: DataSourceOptions = {
   port: 33061,
   username: 'root',
   password: 'root',
-  database: 'blog-nestjs',
+  database: 'web_ocr',
   entities: ['dist/**/*.entity.js'],
   migrations: ['dist/database/migrations/*.js'],
   synchronize: false,
